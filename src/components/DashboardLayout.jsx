@@ -18,17 +18,17 @@ const DashboardLayout = ({ children }) => {
             </a>
           </li>
           <li>
-            <a href="/backup" className="block p-2 hover:bg-blue-700">
+            <a href="/supervisors" className="block p-2 hover:bg-blue-700">
               Supervisors
             </a>
           </li>
           <li>
-            <a href="/backup" className="block p-2 hover:bg-blue-700">
+            <a href="/households" className="block p-2 hover:bg-blue-700">
               Households
             </a>
           </li>
           <li>
-            <a href="/backup" className="block p-2 hover:bg-blue-700">
+            <a href="/roster" className="block p-2 hover:bg-blue-700">
               Roster
             </a>
           </li>
