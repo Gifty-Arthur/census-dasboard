@@ -18,7 +18,7 @@ const Header = () => {
         <div className="flex items-center justify-between h-16">
           <div className="flex-shrink-0">
             <h1 className="text-white text-2xl font-bold tracking-tight">
-              Survey<span className="text-blue-200">Pro</span> Analytics
+              Census<span className="text-blue-200">Pro</span>
             </h1>
           </div>
           

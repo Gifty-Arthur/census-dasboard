@@ -1,63 +1,70 @@
 import React from "react";
 import { useLocation, Outlet } from "react-router-dom";
 import Header from "./Header";
+import {
+  FiHome,
+  FiUsers,
+  FiUserCheck,
+  FiPackage,
+  FiCloud,
+  FiChevronRight
+} from "react-icons/fi";
 
-const DashboardLayout = ({ children }) => {
+const DashboardLayout = () => {
   const location = useLocation();
   const isActive = (path) => location.pathname === path;
   const showHeader = location.pathname !== '/login';
 
+  const navigation = [
+    { name: "Dashboard", path: "/dashboard", icon: FiHome },
+    { name: "Enumerators", path: "/enumerators", icon: FiUsers },
+    { name: "Supervisors", path: "/supervisors", icon: FiUserCheck },
+    { name: "Households", path: "/households", icon: FiPackage },
+    { name: "Backup", path: "/backup", icon: FiCloud },
+  ];
+
   return (
-    <div className="min-h-screen bg-gray-100 flex flex-col">
+    <div className="min-h-screen bg-gray-50 flex flex-col">
       {showHeader && <Header />}
+      
       <div className="flex flex-1">
-        <aside className="w-1/5 bg-blue-800 text-white p-4">
-          <h2 className="text-xl font-bold mb-4">Census Management</h2>
-          <ul className="space-y-2">
-            <li>
+        {/* Sidebar */}
+        <aside className="w-64 bg-gradient-to-b from-gray-800 to-gray-900 shadow-xl">
+          <div className="p-6 border-b border-gray-700">
+            <h2 className="text-xl font-bold text-white">
+              <span className="text-blue-400">Census</span>Pro
+            </h2>
+            <p className="text-sm text-gray-400 mt-1">Management System</p>
+          </div>
+          
+          <nav className="p-4 space-y-1">
+            {navigation.map((item) => (
               <a
-                href="/dashboard"
-                className={`block p-2 hover:bg-blue-700 ${isActive("/dashboard") ? "bg-blue-700" : ""}`}
+                key={item.path}
+                href={item.path}
+                className={`group flex items-center px-4 py-3 rounded-lg transition-all duration-200 ${
+                  isActive(item.path)
+                    ? "bg-gray-700 text-white"
+                    : "text-gray-300 hover:bg-gray-700 hover:text-white"
+                }`}
               >
-                Dashboard
+                <item.icon className={`w-5 h-5 ${isActive(item.path) ? "text-blue-400" : "text-gray-400"}`} />
+                <span className="ml-3 font-medium">{item.name}</span>
+                {isActive(item.path) && (
+                  <FiChevronRight className="ml-auto w-4 h-4 text-blue-400" />
+                )}
               </a>
-            </li>
-            <li>
-              <a
-                href="/enumerators"
-                className={`block p-2 hover:bg-blue-700 ${isActive("/enumerators") ? "bg-blue-700" : ""}`}
-              >
-                Enumerators
-              </a>
-            </li>
-            <li>
-              <a
-                href="/supervisors"
-                className={`block p-2 hover:bg-blue-700 ${isActive("/supervisors") ? "bg-blue-700" : ""}`}
-              >
-                Supervisors
-              </a>
-            </li>
-            <li>
-              <a
-                href="/households"
-                className={`block p-2 hover:bg-blue-700 ${isActive("/households") ? "bg-blue-700" : ""}`}
-              >
-                Households
-              </a>
-            </li>
-            <li>
-              <a
-                href="/backup"
-                className={`block p-2 hover:bg-blue-700 ${isActive("/backup") ? "bg-blue-700" : ""}`}
-              >
-                Backup
-              </a>
-            </li>
-          </ul>
+            ))}
+          </nav>
         </aside>
-        <main className="flex-1 p-6">
-          <Outlet /> {/* This is where the nested routes will be rendered */}
+
+        {/* Main Content */}
+        <main className="flex-1 p-8">
+          <div className="max-w-7xl mx-auto">
+            <div className="bg-white rounded-2xl shadow-sm p-6">
+              <Outlet />
+            </div>
+          </div>
         </main>
       </div>
     </div>
