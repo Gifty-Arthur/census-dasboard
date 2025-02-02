@@ -44,10 +44,10 @@ const DashboardLayout = ({ children }) => {
           </li>
           <li>
             <a
-              href="/roster"
-              className={`block p-2 hover:bg-blue-700 ${isActive("/roster") ? "bg-blue-700" : ""}`}
+              href="/backup"
+              className={`block p-2 hover:bg-blue-700 ${isActive("/backup") ? "bg-blue-700" : ""}`}
             >
-              Roster
+              Backup
             </a>
           </li>
         </ul>
